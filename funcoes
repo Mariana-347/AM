@@ -52,3 +52,14 @@ def afundados(frota, tab):
           afundado+=1
   return afundado
 
+def posicao_valida (frota, linha, coluna, orientacao, tamanho):
+  navio = define_posicoes(linha, coluna, orientacao, tamanho)
+  for ponto in navio:
+    if ponto[0] > 9 or ponto[1] > 9:
+      return False
+  for posicao in frota.values():
+    for coordenada in posicao:
+      for numeros in coordenada:
+        if numeros in navio:
+          return False
+  return True
