@@ -63,3 +63,36 @@ def posicao_valida (frota, linha, coluna, orientacao, tamanho):
         if numeros in navio:
           return False
   return True
+
+frota = {"porta-aviões":[], "navio-tanque":[], "contratorpedeiro":[], "submarino": []}
+tamanho = 4
+vezes = 0
+for navio in frota.keys():
+  i = 1
+  vezes = vezes + 1
+  while i <= vezes:
+    print(f"Insira as informações referentes ao navio {navio} que possui tamanho {tamanho}")
+    linha = int(input("linha: "))
+    coluna = int(input("coluna: "))
+    if navio != "submarino":
+      orientacao = int(input("[1] Vertical [2] Horizontal: "))
+      if orientacao == 1:
+        orientacao = "vertical"
+      else:
+        orientacao = "horizontal"
+    while not posicao_valida(frota, linha, coluna, orientacao, tamanho):
+      print("Esta posição não está válida!")
+      print(f"Insira as informações referentes ao navio {navio} que possui tamanho {tamanho}")
+      linha = int(input("linha: "))
+      coluna = int(input("coluna: "))
+      if navio != "submarino":
+        orientacao = int(input("[1] Vertical [2] Horizontal: "))
+        if orientacao == 1:
+          orientacao = "vertical"
+        else:
+          orientacao = "horizontal"
+    define_posicoes(linha, coluna, orientacao, tamanho)
+    preenche_frota(frota, navio, linha, coluna, orientacao, tamanho)
+    i = i + 1
+  tamanho = tamanho - 1
+print(frota)
