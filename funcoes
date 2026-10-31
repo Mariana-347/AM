@@ -42,3 +42,13 @@ def posiciona_frota(frota):
       for posicao in navio:
         tab[posicao[0]][posicao[1]] = 1
   return tab  
+
+def afundados(frota, tab):
+  afundado=0
+  for posicao in frota.values():
+    for coordenada in posicao:
+      for numeros in coordenada:
+        if tab[numeros[0]][numeros[1]] =='X':
+          afundado+=1
+  return afundado
+
