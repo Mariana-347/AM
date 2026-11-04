@@ -1,3 +1,5 @@
+import random
+
 def define_posicoes (linha, coluna, orientacao, tamanho):
   resposta = []
   if orientacao == "vertical":
@@ -134,3 +136,14 @@ while True:
     if afundados(frota_oponente, tabuleiro_oponente) == 20:
       print('Parabéns! Você derrubou todos os navios do seu oponente!')
       break
+    else:
+      linha = random.randint(0, 9)
+      coluna = random.randint(0, 9)
+      while tabuleiro_jogador[linha][coluna] == "X" or tabuleiro_jogador[linha][coluna] == "-":
+        linha = random.randint(0, 9)
+        coluna = random.randint(0, 9)
+      print(f'Seu oponente está atacando na linha {linha} e coluna {coluna}')
+      tabuleiro_jogador = faz_jogada(tabuleiro_jogador, linha, coluna)
+      if afundados(frota, tabuleiro_jogador) == 20:
+        print('Xi! O oponente derrubou toda a sua frota =(')
+        break
